@@ -253,6 +253,13 @@ return [
 
         ],
         [
+            'text'  => 'Registro',
+            'route' => 'products.index',
+            'icon'  => 'fas fa-products fa-home',
+            'can'   => 'products.index'
+
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
