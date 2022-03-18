@@ -20,7 +20,6 @@
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-6">
-
                 <form method="POST" action="{{ route('products.update',['product'=>$product->id]) }}">
                     @csrf
                     @method('PUT')
@@ -31,18 +30,18 @@
                         <textarea readonly class="form-control" type="text" name="description" placeholder="Descripción" required style="height: 150px">{{old('description') ?? $product->description}}</textarea>
                     </div>
                     <div class="form-group">
-                        <select name="category_id" id="" class="form-control" required>
+                        <select disabled name="category_id" id="" class="form-control" required>
                             <option value="">Selecciona categoría</option>
                             @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            <option {{$category->id == $product->category_id ? 'selected' : ''}} value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <select name="office_id" id="" class="form-control" required>
+                        <select disabled name="office_id" id="" class="form-control" required>
                             <option value="">Selecciona sucursal</option>
                             @foreach ($offices as $office)
-                            <option value="{{$office->id}}">{{$office->name}}</option>
+                            <option {{$office->id == $product->office_id ? 'selected' : ''}} value="{{$office->id}}">{{$office->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -57,8 +56,8 @@
                     <div class="form-group">
                         <select name="state" class="form-control" required>
                             <option value="">Selecciona Estado</option>
-                            <option value="1">Abierto</option>
-                            <option value="0">Cerrado</option>
+                            <option {{$product->state == 1 ? 'selected' : ''}} value="1">Abierto</option>
+                            <option {{$product->state == 0 ? 'selected' : ''}} value="0">Cerrado</option>
                         </select>
                     </div>
                     <div class="form-group">

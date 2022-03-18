@@ -21,7 +21,10 @@ class ProductControler extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::join('categories', 'products.category_id', '=', 'categories.id')
+                ->join('offices','products.office_id','=','offices.id')
+                ->select('products.*','categories.name as category','offices.name as office')
+                ->get();
         return view('products.index')->with(['products'=>$products]);
     }
 
@@ -91,12 +94,6 @@ class ProductControler extends Controller
     public function update(Request $request, Product $product)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'max:30'],
-            'description' => ['required','max:100'],
-            'category_id' => ['required'],
-            'office_id' => ['required'],
-            'price' => ['required','max:5'],
-            'date_p' => ['required'],
             'state' => ['required'],
             'comments' => ['required','max:100'],
         ]);

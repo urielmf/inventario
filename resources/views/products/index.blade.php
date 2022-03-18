@@ -21,8 +21,8 @@
                 <tr>
                     <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->category_id }}</td>
-                    <td>{{ $product->office_id }}</td>
+                    <td>{{ $product->category }}</td>
+                    <td>{{ $product->office }}</td>
                     <td>
                         <a href="{{ route('products.edit', ['product' => $product->id]) }}"
                             class="btn btn-info btn-sm">Editar</a>
