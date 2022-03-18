@@ -21,8 +21,10 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('office_id');
             $table->foreign('office_id')->references('id')->on('offices');
-            $table->smallInteger('price');
-            $table->date('date_p')->nullable();
+            $table->Integer('price');
+            $table->date('date_p');
+            $table->boolean('state')->nullable()->default(1);
+            $table->string('comments',100)->nullable();
             $table->timestamps();
         });
     }

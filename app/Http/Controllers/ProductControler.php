@@ -11,7 +11,7 @@ class ProductControler extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:products.index');
+        // $this->middleware('can:products.index');
         $this->middleware('auth');
     }
     /**
@@ -21,7 +21,8 @@ class ProductControler extends Controller
      */
     public function index()
     {
-        
+        $products = Product::all();
+        return view('products.index')->with(['products'=>$products]);
     }
 
     /**
@@ -33,7 +34,7 @@ class ProductControler extends Controller
     {
         $categories = Category::all();
         $offices = Office::all();
-        return view('products.index')->with(['categories'=>$categories,'offices'=>$offices]);
+        return view('products.create')->with(['categories'=>$categories,'offices'=>$offices]);
     }
 
     /**
@@ -73,9 +74,11 @@ class ProductControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        $offices = Office::all();
+        return view('products.edit')->with(['product'=>$product,'categories'=>$categories,'offices'=>$offices]);
     }
 
     /**
@@ -85,9 +88,22 @@ class ProductControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:30'],
+            'description' => ['required','max:100'],
+            'category_id' => ['required'],
+            'office_id' => ['required'],
+            'price' => ['required','max:5'],
+            'date_p' => ['required'],
+            'state' => ['required'],
+            'comments' => ['required','max:100'],
+        ]);
+        $product->state = $request->state;
+        $product->comments = $request->comments;
+        $product->update();
+        return redirect()->route('products.index');
     }
 
     /**
@@ -96,8 +112,10 @@ class ProductControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $product = Product::findOrFail($request->mi_contacto);
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }

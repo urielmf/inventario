@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -17,15 +17,17 @@ class Product extends Model
         'office_id',
         'price',
         'date_p',
+        'state',
+        'comments',
     ];
 
     protected $dates = [
         'date_p',
     ];
 
-    protected $casts = [
-        'date_p' => 'date:d-m-Y',
-    ];
+    // protected $casts = [
+    //     'date_p' => 'date:d-m-Y',
+    // ];
 
     public function category(){
         return $this->belongsTo('App\Models\Category');

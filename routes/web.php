@@ -24,3 +24,4 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('/products', ProductControler::class)->names('products');
+Route::delete('products/destroy',[ProductControler::class, 'destroy'])->name('products.destroy2');
