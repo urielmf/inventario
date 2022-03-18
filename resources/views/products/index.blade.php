@@ -8,6 +8,15 @@
 @endsection
 
 @section('content')
+@if (isset($errors) && $errors->any())
+        <div class="alert alert-danger espaciado">
+            <ul class="sinmargin">
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>  
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-6">
@@ -16,20 +25,26 @@
                     @csrf
 
                     <div class="form-group">
-                        <input class="form-control" type="text" name="title" value="{{ old('title') }}" placeholder="Nombre" required>
+                        <input class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Nombre" required>
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" type="text" name="description" value="{{ old('description') }}"
                             placeholder="Descripción" required style="height: 150px"></textarea>
                     </div>
                     <div class="form-group">
-                        <select name="category" id="" class="form-control" required>
+                        <select name="category_id" id="" class="form-control" required>
                             <option value="">Selecciona categoría</option>
+                            @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <select name="office" id="" class="form-control" required>
+                        <select name="office_id" id="" class="form-control" required>
                             <option value="">Selecciona sucursal</option>
+                            @foreach ($offices as $office)
+                            <option value="{{$office->id}}">{{$office->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -38,8 +53,7 @@
                     </div>
                     <div class="form-group">
                         <label> Fecha de compra</label>
-                        <input class="form-control" type="date" min="0" name="fecha_compra" value="{{ old('fecha_compra') }}" placeholder="Fecha de compra"
-                            required>
+                        <input class="form-control" type="date" min="0" name="date_p" value="{{ old('date_p->format("Y-m-d"') }}" required>
                     </div>
                     
                     <br>

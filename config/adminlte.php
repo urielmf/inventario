@@ -254,7 +254,7 @@ return [
         ],
         [
             'text'  => 'Registro',
-            'route' => 'products.index',
+            'route' => 'products.create',
             'icon'  => 'fas fa-products fa-home',
             'can'   => 'products.index'
 

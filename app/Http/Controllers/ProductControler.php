@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Office;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductControler extends Controller
@@ -18,7 +21,7 @@ class ProductControler extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        
     }
 
     /**
@@ -28,7 +31,9 @@ class ProductControler extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $offices = Office::all();
+        return view('products.index')->with(['categories'=>$categories,'offices'=>$offices]);
     }
 
     /**
@@ -39,7 +44,16 @@ class ProductControler extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:30'],
+            'description' => ['required','max:100'],
+            'category_id' => ['required'],
+            'office_id' => ['required'],
+            'price' => ['required','max:5'],
+            'date_p' => ['required'],
+        ]);
+        $product = Product::create($request->all());
+        return redirect()->route('products.create');
     }
 
     /**
