@@ -268,8 +268,9 @@ return [
         ],
         [
             'text'  => 'Reportes',
-            'route' => 'home',
+            'route' => 'reports.index',
             'icon'  => 'fas fa-fw fa-book',
+            'can'   => 'reports.index',
             
 
         ],

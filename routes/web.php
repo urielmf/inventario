@@ -1,6 +1,9 @@
 <?php
 
+use App\Exports\ProductsDateExport;
+use App\Exports\ProductsExport;
 use App\Http\Controllers\ProductControler;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +30,12 @@ Route::resource('/products', ProductControler::class)->names('products');
 Route::get('/products', [ProductControler::class,'index'])->middleware('can:products.index')->name('products.index');
 Route::get('products/create',[ProductControler::class, 'create'])->middleware('can:products.create')->name('products.create');
 Route::delete('products/destroy',[ProductControler::class, 'destroy'])->name('products.destroy2');
+
+
+Route::get('reports/',[ReportController::class,'index'])->middleware('can:reports.index')->name('reports.index');
+Route::get('reports/csv/export',[ReportController::class,'export'])->middleware('can:reports.index')->name('reports.export');
+// Route::get('reports/csv/export/dates',[ReportController::class,'dates'])->middleware('can:reports.index')->name('reports.export.dates');
+
+Route::get('reports/csv/export/{office}', function ($office){
+    return (new ProductsDateExport($office))->download('productsDates.csv');
+})->name('reports.export.dates');
