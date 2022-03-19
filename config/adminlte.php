@@ -271,8 +271,12 @@ return [
             'route' => 'reports.index',
             'icon'  => 'fas fa-fw fa-book',
             'can'   => 'reports.index',
-            
-
+        ],
+        [
+            'text'  => 'Cerrar Sesión',
+            'route' => 'button.logout',
+            'icon'  => 'fas fa-fw fa-power-off',
+            'icon_color' => 'red',
         ],
         // [
         //     'text'        => 'pages',

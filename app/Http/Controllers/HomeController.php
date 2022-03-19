@@ -38,4 +38,9 @@ class HomeController extends Controller
         Session::flush();
         Auth::logout();
     }
+
+    public function buttonlogout(){
+        $this->perform();
+        return redirect()->route('login');
+    }
 }

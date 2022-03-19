@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(); 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/button-logout', [App\Http\Controllers\HomeController::class, 'buttonlogout'])->name('button.logout');
 
 Route::resource('/products', ProductControler::class)->names('products');
 Route::get('/products', [ProductControler::class,'index'])->middleware('can:products.index')->name('products.index');

@@ -64,11 +64,11 @@
                 </div>
             </div>
 
-            @error('username')
+            {{-- @error('username')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
-            @enderror
+            @enderror --}}
         </div>
 
         {{-- Password field --}}
@@ -82,11 +82,11 @@
                 </div>
             </div>
 
-            @error('password')
+            {{-- @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
-            @enderror
+            @enderror --}}
         </div>
 
         {{-- Login field --}}

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Recordlogin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -40,5 +42,18 @@ class LoginController extends Controller
 
     public function username(){
         return 'username';
+    }
+
+    public function authenticated(){
+        //Request $request, $user
+        // $user->last_login = now();
+        // $user->save();
+        $recordlogin = new Recordlogin();
+        $user = Auth::user();
+        $recordlogin->username =  $user->username;
+        $recordlogin->user_id =  $user->id;
+        $recordlogin->save();
+        return redirect()->route('home');
+
     }
 }
