@@ -20,7 +20,7 @@
         {{-- Name field --}}
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                   value="{{ old('name') }}" placeholder="Nombre Completo" autofocus>
+                   value="{{ old('name') }}" placeholder="Nombre" autofocus>
                    {{-- {{ __('adminlte::adminlte.full_name') }} --}}
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -29,6 +29,40 @@
             </div>
 
             @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        {{-- Last Name father field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="last_name_p" class="form-control @error('last_name_p') is-invalid @enderror"
+                   value="{{ old('last_name_p') }}" placeholder="Apellido Paterno" autofocus>
+                   {{-- {{ __('adminlte::adminlte.full_name') }} --}}
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+
+            @error('last_name_p')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        {{-- Last Name mothern field --}}
+        <div class="input-group mb-3">
+            <input type="text" name="last_name_m" class="form-control @error('last_name_m') is-invalid @enderror"
+                   value="{{ old('last_name_m') }}" placeholder="Apellido Materno" autofocus>
+                   {{-- {{ __('adminlte::adminlte.full_name') }} --}}
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+
+            @error('last_name_m')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

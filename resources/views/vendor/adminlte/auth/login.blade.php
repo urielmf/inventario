@@ -21,6 +21,15 @@
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
 @section('auth_body')
+@if (isset($errors) && $errors->any())
+        <div class="alert alert-danger espaciado">
+            {{-- <ul class="sinmargin"> --}}
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            {{-- </ul> --}}
+        </div>
+    @endif
     <form action="{{ $login_url }}" method="post">
         @csrf
 
