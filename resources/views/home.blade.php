@@ -1,15 +1,28 @@
 {{-- @extends('layouts.app') --}}
-@extends('adminlte::page')
+@extends('master')
 
 
 @section('title','Dashboard')
 
 @section('content_header')
-    
+    <h2 class="text-center">Bienvenido al sistema de inventario</h2>
 @endsection
     
 @section('content')
+<h3>¿Que desea hacer?</h3>
 
+<p>En este sistema podrá realizar:</p>
+<ul>
+    <li>Registro de productos</li>
+    <li>Edición limitada de productos</li>
+    <li>Borrado de productos</li>
+    <li>Descarga de reportes de los productos </li>
+    <li>Crear usuarios nuevos</li>
+</ul>
+<p>Esto acorde al rol que tenga su perfil, de igual manera dependiendo del perfil que tenga las opciones en la barra lateral cambiaran 
+    Gracias por ingresar :)
+     </p>
+ 
 @endsection
 
 @section('footer')

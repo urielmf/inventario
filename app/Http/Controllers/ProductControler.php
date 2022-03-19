@@ -53,7 +53,7 @@ class ProductControler extends Controller
             'description' => ['required','max:100'],
             'category_id' => ['required'],
             'office_id' => ['required'],
-            'price' => ['required','max:5'],
+            'price' => ['required','numeric','digits_between:1,5'],
             'date_p' => ['required'],
         ]);
         $product = Product::create($request->all());
