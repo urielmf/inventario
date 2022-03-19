@@ -57,7 +57,7 @@ class ProductControler extends Controller
             'date_p' => ['required'],
         ]);
         $product = Product::create($request->all());
-        return redirect()->route('products.create');
+        return redirect()->route('products.create')->withSuccess("El producto fue creado con éxito");
     }
 
     /**
@@ -100,7 +100,7 @@ class ProductControler extends Controller
         $product->state = $request->state;
         $product->comments = $request->comments;
         $product->update();
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->withSuccess("El producto fue editado con éxito");
     }
 
     /**
@@ -113,6 +113,6 @@ class ProductControler extends Controller
     {
         $product = Product::findOrFail($request->mi_contacto);
         $product->delete();
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->withSuccess("El producto fue borrado con éxito");
     }
 }

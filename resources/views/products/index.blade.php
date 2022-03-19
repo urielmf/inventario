@@ -6,6 +6,21 @@
     <h2 class="text-center">Bandeja de Productos</h2>
 @endsection
 @section('content')
+    @if (isset($errors) && $errors->any())
+        <div class="alert alert-danger espaciado">
+            <ul class="sinmargin">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if (session()->has('success'))
+        <div class="alert alert-success espaciado">
+            {{ session()->get('success') }}
+        </div>
+    @endif
     <table class="table table-striped">
         <thead class="">
             <tr>

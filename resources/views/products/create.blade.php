@@ -4,17 +4,23 @@
 @section('title', 'Productos')
 
 @section('content_header')
-<h2 class="text-center mt-3">Registrar un producto</h2>
+    <h2 class="text-center mt-3">Registrar un producto</h2>
 @endsection
 
 @section('content')
-@if (isset($errors) && $errors->any())
+    @if (isset($errors) && $errors->any())
         <div class="alert alert-danger espaciado">
             <ul class="sinmargin">
                 @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>  
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
+        </div>
+    @endif
+
+    @if (session()->has('success'))
+        <div class="alert alert-success espaciado">
+            {{ session()->get('success') }}
         </div>
     @endif
     <div class="container mb-5">
@@ -25,7 +31,8 @@
                     @csrf
 
                     <div class="form-group">
-                        <input class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Nombre" required>
+                        <input class="form-control" type="text" name="name" value="{{ old('name') }}"
+                            placeholder="Nombre" required>
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" type="text" name="description" value="{{ old('description') }}"
@@ -35,7 +42,7 @@
                         <select name="category_id" id="" class="form-control" required>
                             <option value="">Selecciona categoría</option>
                             @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -43,7 +50,7 @@
                         <select name="office_id" id="" class="form-control" required>
                             <option value="">Selecciona sucursal</option>
                             @foreach ($offices as $office)
-                            <option value="{{$office->id}}">{{$office->name}}</option>
+                                <option value="{{ $office->id }}">{{ $office->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -53,9 +60,10 @@
                     </div>
                     <div class="form-group">
                         <label> Fecha de compra</label>
-                        <input class="form-control" type="date" min="0" name="date_p" value="{{ old('date_p->format("Y-m-d"') }}" required>
+                        <input class="form-control" type="date" min="0" name="date_p"
+                            value="{{ old('date_p->format("Y-m-d"') }}" required>
                     </div>
-                    
+
                     <br>
                     <div class="form-row">
                         <p><button type="submit" class="btn btn-primary btn-lg">Registrar</button></p>

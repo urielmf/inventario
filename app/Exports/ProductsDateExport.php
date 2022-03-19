@@ -12,14 +12,16 @@ class ProductsDateExport implements FromQuery
     /**
     * @return \Illuminate\Database\Query\Builder
     */
-    private $office;
+    private $date1;
+    private $date2;
 
-    public Function __construct($office)
+    public Function __construct($date1,$date2)
     {
-        $this->office = $office;
+        $this->date1 = $date1;
+        $this->date2 = $date2;
     }
     public function query()
     {
-        return Product::query()->where('office_id',$this->office);
+        return Product::query()->where('created_at','>',$this->date1)->where('created_at','<',$this->date2);
     }
 }

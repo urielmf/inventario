@@ -34,8 +34,9 @@ Route::delete('products/destroy',[ProductControler::class, 'destroy'])->name('pr
 
 Route::get('reports/',[ReportController::class,'index'])->middleware('can:reports.index')->name('reports.index');
 Route::get('reports/csv/export',[ReportController::class,'export'])->middleware('can:reports.index')->name('reports.export');
+Route::post('reports/csv/exportdate',[ReportController::class,'exportdate'])->middleware('can:reports.index')->name('reports.exportdate');
 // Route::get('reports/csv/export/dates',[ReportController::class,'dates'])->middleware('can:reports.index')->name('reports.export.dates');
 
-Route::get('reports/csv/export/{office}', function ($office){
-    return (new ProductsDateExport($office))->download('productsDates.csv');
+Route::get('reports/csv/export/{date1}/{date2}', function ($date1,$date2){
+    return (new ProductsDateExport($date1,$date2))->download('productsDates.csv');
 })->name('reports.export.dates');
