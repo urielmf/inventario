@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoleSeeder;
 
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(OfficeSeeder::class);
         $this->call(UserSeeder::class);
+        Product::factory(10)->create();
     }
 }
