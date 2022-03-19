@@ -1,5 +1,6 @@
 @extends('adminlte::auth.auth-page', ['auth_type' => 'register'])
 
+@section('title','Registrar Usuario')
 @php( $login_url = View::getSection('login_url') ?? config('adminlte.login_url', 'login') )
 @php( $register_url = View::getSection('register_url') ?? config('adminlte.register_url', 'register') )
 
@@ -11,8 +12,8 @@
     @php( $register_url = $register_url ? url($register_url) : '' )
 @endif
 
-@section('auth_header', __('adminlte::adminlte.register_message'))
-
+@section('auth_header', 'Registra a un nuevo miembro')
+{{-- __('adminlte::adminlte.register_message') --}}
 @section('auth_body')
     <form action="{{ $register_url }}" method="post">
         @csrf
@@ -174,7 +175,8 @@
 @section('auth_footer')
     <p class="my-0">
         <a href="{{ $login_url }}">
-            {{ __('adminlte::adminlte.i_already_have_a_membership') }}
+            {{-- {{ __('adminlte::adminlte.i_already_have_a_membership') }} --}}
+            Ya tengo una cuenta 
         </a>
     </p>
 @stop
