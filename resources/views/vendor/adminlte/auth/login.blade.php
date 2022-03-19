@@ -44,7 +44,7 @@
 
         {{-- User field --}}
         <div class="input-group mb-3">
-            <label for="">Ingresar con nombre de usuario NO con correo</label>
+            <label for="">Ingresar con nombre de usuario, NO con correo</label>
             <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
                    value="{{ old('username') }}" placeholder="Nombre de Usuario" autofocus>
 
